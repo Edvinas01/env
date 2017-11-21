@@ -67,7 +67,7 @@ fc-cache -f
 # Version control.
 sudo apt-get install -y git
 git config --global user.name 'Edvinas'
-git config --global user.email 'evinas108@gmail.com'
+git config --global user.email 'edvinas108@gmail.com'
 
 # Hack to enable silent Java installation.
 echo debconf shared/accepted-oracle-license-v1-1 select true | \
