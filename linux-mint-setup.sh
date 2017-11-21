@@ -10,7 +10,11 @@ sudo apt-get upgrade -y
 #
 # Specific versions for some dependencies.
 #
+
+# Vagrant VM setup tool version.
 VAGRANT_VERSION='2.0.1'
+
+# Chef development kit version.
 CHEF_DK_VERSION='2.3.4'
 
 
@@ -134,7 +138,7 @@ wget ${url}
 sudo dpkg -i "vagrant_${VAGRANT_VERSION}_x86_64.deb"
 vagrant plugin install vagrant-berkshelf
 
-rm vagrant_2.0.1_x86_64.deb
+rm vagrant_${VAGRANT_VERSION}_x86_64.deb
 
 # REST API testing tool.
 wget -O postman.tar.gz https://dl.pstmn.io/download/latest/linux64
