@@ -121,3 +121,5 @@ wget -O postman.tar.gz https://dl.pstmn.io/download/latest/linux64
 sudo mkdir /opt/postman
 sudo tar xf postman.tar.gz --strip 1 -C /opt/postman
 sudo ln -s /opt/postman/Postman /usr/local/bin/postman
+
+rm postman.tar.gz
