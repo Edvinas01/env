@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 
-# Update all repositories.
+#
+# Initial update for all repositories.
+#
 sudo apt-get update
 sudo apt-get upgrade -y
+
+
+#
+# Specific versions for some dependencies.
+#
+VAGRANT_VERSION='2.0.1'
+CHEF_DK_VERSION='2.3.4'
 
 
 #
@@ -33,6 +42,7 @@ sudo apt-get install -y libgoo-canvas-perl
 # Cloud storage.
 sudo apt-get install -y dropbox
 
+
 #
 # Directories, look and feel.
 #
@@ -55,10 +65,11 @@ url="https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode"
 mkdir -p ~/.local/share/fonts
 for type in Bold Light Medium Regular Retina; do
     wget -O ~/.local/share/fonts/FiraCode-${type}.ttf \
-    "${url}-${type}.ttf?raw=true";
+        "${url}-${type}.ttf?raw=true";
 done
 
 fc-cache -f
+
 
 #
 # Dev tools.
@@ -108,18 +119,22 @@ vboxmanage setproperty machinefolder ~/Documents/VMs
 
 # Setup chefdk.
 url=https://packages.chef.io/files/stable/chefdk
-url+=/2.3.4/debian/8/chefdk_2.3.4-1_amd64.deb
+url+=/${CHEF_DK_VERSION}/debian/8/chefdk_${CHEF_DK_VERSION}-1_amd64.deb
 wget ${url}
 
-sudo dpkg -i chefdk_2.3.4-1_amd64.deb
-rm chefdk_2.3.4-1_amd64.deb
+sudo dpkg -i chefdk_${CHEF_DK_VERSION}-1_amd64.deb
+
+rm chefdk_${CHEF_DK_VERSION}-1_amd64.deb
 
 # Useful VirtualBox setup tool.
-wget https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.deb
-sudo dpkg -i vagrant_2.0.1_x86_64.deb
-rm vagrant_2.0.1_x86_64.deb
+url=https://releases.hashicorp.com/vagrant
+url+="${url}/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb"
+wget ${url}
 
+sudo dpkg -i "vagrant_${VAGRANT_VERSION}_x86_64.deb"
 vagrant plugin install vagrant-berkshelf
+
+rm vagrant_2.0.1_x86_64.deb
 
 # REST API testing tool.
 wget -O postman.tar.gz https://dl.pstmn.io/download/latest/linux64
