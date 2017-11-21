@@ -40,6 +40,12 @@ sudo apt-get install -y dropbox
 # Common project dir.
 mkdir ~/Documents/Projects
 
+# Unused directories.
+rm -r ~/Templates
+rm -r ~/Videos
+rm -r ~/Public
+rm -r ~/Music
+
 # Lock screen shortcut.
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver \
     "['<Super>l', 'XF86ScreenSaver']"
