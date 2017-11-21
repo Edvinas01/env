@@ -6,7 +6,7 @@ sudo apt-get upgrade -y
 
 
 #
-# Convienience tools.
+# Convenience tools.
 #
 
 # Make sure that latest firefox is installed.
@@ -44,6 +44,15 @@ mkdir ~/Documents/Projects
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver \
     "['<Super>l', 'XF86ScreenSaver']"
 
+# Pretty monospace font.
+url="https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode"
+mkdir -p ~/.local/share/fonts
+for type in Bold Light Medium Regular Retina; do
+    wget -O ~/.local/share/fonts/FiraCode-${type}.ttf \
+    "${url}-${type}.ttf?raw=true";
+done
+
+fc-cache -f
 
 #
 # Dev tools.
@@ -94,7 +103,7 @@ vboxmanage setproperty machinefolder ~/Documents/VMs
 # Setup chefdk.
 url=https://packages.chef.io/files/stable/chefdk
 url+=/2.3.4/debian/8/chefdk_2.3.4-1_amd64.deb
-wget $url
+wget ${url}
 
 sudo dpkg -i chefdk_2.3.4-1_amd64.deb
 rm chefdk_2.3.4-1_amd64.deb
