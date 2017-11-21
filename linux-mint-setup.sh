@@ -91,9 +91,9 @@ wget -O idea.tar.gz \
 
 sudo mkdir /opt/idea
 sudo tar xf idea.tar.gz --strip 1 -C /opt/idea
-rm idea.tar.gz
-
 sudo ln -s /opt/idea/bin/idea.sh /usr/local/bin/idea
+
+rm idea.tar.gz
 
 # VirtualBox for setting up virtual machines.
 sudo apt-get install -y virtualbox
@@ -114,3 +114,10 @@ sudo dpkg -i vagrant_2.0.1_x86_64.deb
 rm vagrant_2.0.1_x86_64.deb
 
 vagrant plugin install vagrant-berkshelf
+
+# REST API testing tool.
+wget -O postman.tar.gz https://dl.pstmn.io/download/latest/linux64
+
+sudo mkdir /opt/postman
+sudo tar xf postman.tar.gz --strip 1 -C /opt/postman
+sudo ln -s /opt/postman/Postman /usr/local/bin/postman
