@@ -17,6 +17,9 @@ VAGRANT_VERSION='2.0.1'
 # Chef development kit version.
 CHEF_DK_VERSION='2.3.4'
 
+# Slack version.
+SLACK_VERSION='2.9.0'
+
 
 #
 # Convenience tools.
@@ -51,6 +54,15 @@ sudo apt-get install -y libgoo-canvas-perl
 # Cloud storage.
 sudo apt-get install -y dropbox
 
+# Handy collaboration / chat software.
+url=https://downloads.slack-edge.com/linux_releases
+url+="/slack-desktop-${SLACK_VERSION}-amd64.deb"
+wget ${url}
+
+sudo dpkg -i slack-desktop-${SLACK_VERSION}-amd64.deb
+
+rm slack-desktop-${SLACK_VERSION}-amd64.deb
+
 
 #
 # Directories, look and feel.
@@ -68,6 +80,12 @@ rm -r ~/Music
 # Lock screen shortcut.
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver \
     "['<Super>l', 'XF86ScreenSaver']"
+
+# Icon colors.
+gsettings set org.cinnamon.desktop.interface icon-theme 'Mint-X-Orange'
+
+# Interface / hilight colors.
+gsettings set org.cinnamon.desktop.interface gtk-theme 'Mint-X-Orange'
 
 # Pretty monospace font.
 url="https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode"
