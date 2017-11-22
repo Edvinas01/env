@@ -59,6 +59,7 @@ url=https://downloads.slack-edge.com/linux_releases
 url+="/slack-desktop-${SLACK_VERSION}-amd64.deb"
 wget ${url}
 
+sudo apt-get install -y libcurl3
 sudo dpkg -i slack-desktop-${SLACK_VERSION}-amd64.deb
 
 rm slack-desktop-${SLACK_VERSION}-amd64.deb
@@ -171,3 +172,6 @@ sudo tar xf postman.tar.gz --strip 1 -C /opt/postman
 sudo ln -s /opt/postman/Postman /usr/local/bin/postman
 
 rm postman.tar.gz
+
+# Packet sniffing / viewing tool, install silently.
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install wireshark
