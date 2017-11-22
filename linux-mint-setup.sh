@@ -35,6 +35,11 @@ sudo apt-get install -y gedit
 
 # Something nice for the eyes.
 sudo apt-get install -y redshift-gtk
+echo '''
+[redshift]
+temp-day=5000
+temp-night=3000
+''' > ~/.config/redshift.conf
 
 # Password manager.
 sudo apt-get install -y keepassx
