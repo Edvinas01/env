@@ -100,7 +100,7 @@ echo debconf shared/accepted-oracle-license-v1-1 seen true | \
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install -y oracle-java8-installer
-sudo apt-get install -y install oracle-java8-set-default
+sudo apt-get install -y oracle-java8-set-default
 
 echo 'JAVA_HOME="/usr/lib/jvm/java-8-oracle/jre/bin/java"' | \
     sudo tee -a /etc/environment
