@@ -98,6 +98,12 @@ done
 
 fc-cache -f
 
+# Set keyboard layouts.
+gsettings set org.gnome.libgnomekbd.keyboard layouts "['us', 'lt']"
+
+# Set shortcut for switching to another layout.
+gsettings set org.gnome.libgnomekbd.keyboard options "['grp\tgrp:alt_shift_toggle']"
+
 
 #
 # Dev tools.
