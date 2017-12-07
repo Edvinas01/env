@@ -185,6 +185,7 @@ echo "wireshark-common wireshark-common/install-setuid boolean true" | \
     sudo debconf-set-selections
 sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure wireshark-common
 sudo usermod -a -G wireshark $USER
+newgrp wireshark
 
 # JavaScript development tools.
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
