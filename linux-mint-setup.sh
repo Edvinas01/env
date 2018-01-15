@@ -17,6 +17,9 @@ VAGRANT_VERSION='2.0.1'
 # Chef development kit version.
 CHEF_DK_VERSION='2.3.4'
 
+# Slack version.
+SLACK_VERSION='2.9.0'
+
 
 #
 # Convenience tools.
@@ -51,6 +54,16 @@ sudo apt-get install -y libgoo-canvas-perl
 # Cloud storage.
 sudo apt-get install -y dropbox
 
+# Handy collaboration / chat software.
+url=https://downloads.slack-edge.com/linux_releases
+url+="/slack-desktop-${SLACK_VERSION}-amd64.deb"
+wget ${url}
+
+sudo apt-get install -y libcurl3
+sudo dpkg -i slack-desktop-${SLACK_VERSION}-amd64.deb
+
+rm slack-desktop-${SLACK_VERSION}-amd64.deb
+
 
 #
 # Directories, look and feel.
@@ -69,6 +82,12 @@ rm -r ~/Music
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver \
     "['<Super>l', 'XF86ScreenSaver']"
 
+# Icon colors.
+gsettings set org.cinnamon.desktop.interface icon-theme 'Mint-X-Orange'
+
+# Interface / hilight colors.
+gsettings set org.cinnamon.desktop.interface gtk-theme 'Mint-X-Orange'
+
 # Pretty monospace font.
 url="https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode"
 mkdir -p ~/.local/share/fonts
@@ -78,6 +97,12 @@ for type in Bold Light Medium Regular Retina; do
 done
 
 fc-cache -f
+
+# Set keyboard layouts.
+gsettings set org.gnome.libgnomekbd.keyboard layouts "['us', 'lt']"
+
+# Set shortcut for switching to another layout.
+gsettings set org.gnome.libgnomekbd.keyboard options "['grp\tgrp:alt_shift_toggle']"
 
 
 #
@@ -153,3 +178,15 @@ sudo tar xf postman.tar.gz --strip 1 -C /opt/postman
 sudo ln -s /opt/postman/Postman /usr/local/bin/postman
 
 rm postman.tar.gz
+
+# Packet sniffing / viewing tool, install silently.
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install wireshark
+echo "wireshark-common wireshark-common/install-setuid boolean true" | \
+    sudo debconf-set-selections
+sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure wireshark-common
+sudo usermod -a -G wireshark $USER
+newgrp wireshark
+
+# JavaScript development tools.
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
