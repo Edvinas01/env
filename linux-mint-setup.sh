@@ -137,7 +137,7 @@ rm chefdk_${CHEF_DK_VERSION}-1_amd64.deb
 
 # Useful VirtualBox setup tool.
 url=https://releases.hashicorp.com/vagrant
-url+="${url}/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb"
+url+="/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb"
 wget ${url}
 
 sudo dpkg -i "vagrant_${VAGRANT_VERSION}_x86_64.deb"
