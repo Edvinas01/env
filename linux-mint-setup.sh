@@ -12,13 +12,13 @@ sudo apt-get upgrade -y
 #
 
 # Vagrant VM setup tool version.
-VAGRANT_VERSION='2.0.1'
+VAGRANT_VERSION='2.0.2'
 
 # Chef development kit version.
-CHEF_DK_VERSION='2.3.4'
+CHEF_DK_VERSION='2.4.17'
 
 # Slack version.
-SLACK_VERSION='2.9.0'
+SLACK_VERSION='3.0.5'
 
 
 #
@@ -118,10 +118,10 @@ echo debconf shared/accepted-oracle-license-v1-1 seen true | \
 # Install Java 8 and set it as default.
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install -y oracle-java8-installer
-sudo apt-get install -y oracle-java8-set-default
+sudo apt-get install -y oracle-java9-installer
+sudo apt-get install -y oracle-java9-set-default
 
-echo 'JAVA_HOME="/usr/lib/jvm/java-8-oracle/jre/bin/java"' | \
+echo 'JAVA_HOME="/usr/lib/jvm/java-9-oracle"' | \
     sudo tee -a /etc/environment
 
 # Setup best IDE for Java (automatically grep latest version).
