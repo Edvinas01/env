@@ -98,6 +98,12 @@ done
 
 fc-cache -f
 
+# Set keyboard layouts.
+gsettings set org.gnome.libgnomekbd.keyboard layouts "['us', 'lt']"
+
+# Set shortcut for switching to another layout.
+gsettings set org.gnome.libgnomekbd.keyboard options "['grp\tgrp:alt_shift_toggle']"
+
 
 #
 # Dev tools.
@@ -156,7 +162,7 @@ rm chefdk_${CHEF_DK_VERSION}-1_amd64.deb
 
 # Useful VirtualBox setup tool.
 url=https://releases.hashicorp.com/vagrant
-url+="${url}/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb"
+url+="/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb"
 wget ${url}
 
 sudo dpkg -i "vagrant_${VAGRANT_VERSION}_x86_64.deb"
@@ -175,6 +181,11 @@ rm postman.tar.gz
 
 # Packet sniffing / viewing tool, install silently.
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install wireshark
+echo "wireshark-common wireshark-common/install-setuid boolean true" | \
+    sudo debconf-set-selections
+sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure wireshark-common
+sudo usermod -a -G wireshark $USER
+newgrp wireshark
 
 # JavaScript development tools.
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
