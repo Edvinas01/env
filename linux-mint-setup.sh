@@ -115,19 +115,16 @@ git config --global user.name 'Edvinas'
 git config --global user.email 'edvinas108@gmail.com'
 
 # Hack to enable silent Java installation.
-echo debconf shared/accepted-oracle-license-v1-1 select true | \
-    sudo debconf-set-selections
+echo oracle-java10-installer shared/accepted-oracle-license-v1-1 select true | \
+    sudo /usr/bin/debconf-set-selections
 
-echo debconf shared/accepted-oracle-license-v1-1 seen true | \
-    sudo debconf-set-selections
-
-# Install Java 8 and set it as default.
-sudo add-apt-repository -y ppa:webupd8team/java
+# Install Java 10 and set it as default.
+sudo add-apt-repository -y ppa:linuxuprising/java
 sudo apt-get update
-sudo apt-get install -y oracle-java9-installer
-sudo apt-get install -y oracle-java9-set-default
+sudo apt-get install -y oracle-java10-installer
+sudo apt-get install -y oracle-java10-set-default
 
-echo 'JAVA_HOME="/usr/lib/jvm/java-9-oracle"' | \
+echo 'JAVA_HOME="/usr/lib/jvm/java-10-oracle"' | \
     sudo tee -a /etc/environment
 
 # Setup best IDE for Java (automatically grep latest version).
