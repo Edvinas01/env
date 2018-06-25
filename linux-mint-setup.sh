@@ -131,7 +131,8 @@ echo 'JAVA_HOME="/usr/lib/jvm/java-10-oracle"' | \
 ideaVersion=$(
     curl https://www.jetbrains.com/updates/updates.xml |\
     grep 'IDEA_Release' -1 |\
-    grep -oP 'version="\K[^"]+'
+    grep -oP 'version="\K[^"]+' |\
+    grep -v 'EDU'
 )
 
 wget -O idea.tar.gz \
