@@ -9,6 +9,9 @@ sudo apt install -y git
 git config --global user.name 'Edvinas'
 git config --global user.email 'edvinas108@gmail.com'
 
+sudo apt install -y tlp tlp-rdw
+sudo tlp start
+
 sudo apt install -y fonts-firacode
 sudo apt install -y snapd
 
