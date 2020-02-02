@@ -22,7 +22,24 @@ sudo snap install postman
 
 sudo snap install intellij-idea-ultimate --classic
 sudo snap install clion --classic
+
 sudo snap install code --classic
+echo '''
+{
+  "editor.fontSize": 16,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.minimap.maxColumn": 100,
+  "editor.rulers": [80, 100],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.wordWrap": "on"
+}
+''' > ~/.config/Code/User/settings.json
+
+code --install-extension streetsidesoftware.code-spell-checker
+code --install-extension editorconfig.editorconfig
 
 # Home dir structure.
 mkdir ~/Projects
