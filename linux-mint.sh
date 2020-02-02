@@ -52,3 +52,12 @@ echo '''
 temp-day=4000
 temp-night=3000
 ''' > ~/.config/redshift.conf
+
+# Firewall.
+sudo ufw enable
+
+# Set DNS to Cloudflare.
+echo '''
+supersede domain-name-servers 1.1.1.1, 1.0.0.1;
+supersede dhcp6.name-servers 2606:4700:4700::1111, 2606:4700:4700::1001;
+''' | sudo tee -a /etc/dhcp/dhclient.conf
