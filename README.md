@@ -1,4 +1,3 @@
-# Environments
-Various environment setups for Linux operating systems. Available setup scripts:
-- [Java Linux Mint](linux-mint-setup.sh) - Generic setup mainly for working with 
-Java, also includes some VM tools and other useful apps.
+# ENV
+Environment setup scripts for various operating systems:
+- [Linux Mint](linux-mint.sh) - current [Linux Mint 19.3](https://linuxmint.com/edition.php?id=274) setup.
