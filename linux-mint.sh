@@ -22,6 +22,7 @@ sudo snap install postman
 
 sudo snap install intellij-idea-ultimate --classic
 sudo snap install clion --classic
+sudo snap install code --classic
 
 # Home dir structure.
 mkdir ~/Projects
