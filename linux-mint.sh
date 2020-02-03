@@ -82,3 +82,6 @@ echo '''
 supersede domain-name-servers 1.1.1.1, 1.0.0.1;
 supersede dhcp6.name-servers 2606:4700:4700::1111, 2606:4700:4700::1001;
 ''' | sudo tee -a /etc/dhcp/dhclient.conf
+
+# Fix clock when dual-booting.
+timedatectl set-local-rtc 1 --adjust-system-clock
