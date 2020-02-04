@@ -2,57 +2,87 @@
 
 set -e
 
-# Applications and tools.
 sudo apt update
 
+# Git.
 sudo apt install -y git
 git config --global user.name 'Edvinas'
 git config --global user.email 'edvinas108@gmail.com'
 
+# Power saving.
 sudo apt install -y tlp tlp-rdw
 sudo tlp start
 
+# Fonts.
 sudo apt install -y fonts-firacode
+
+# Snap.
 sudo apt install -y snapd
 
-# Applications managed by snap.
+# General applications.
 sudo snap install keepassxc
-sudo snap install hugo
-sudo snap install docker
 sudo snap install gimp
 sudo snap install discord
-sudo snap install postman
 
+# Dev tools.
+sudo snap install postman
+sudo snap install hugo
+sudo snap install docker
+
+# C# programming tools.
+sudo snap install dotnet-sdk --classic
+sudo snap install dotnet-runtime-31
+sudo ln -s /snap/dotnet-sdk/current/dotnet /usr/local/bin/dotnet
+
+# IDEs.
 sudo snap install intellij-idea-ultimate --classic
+sudo snap install rider --classic
 sudo snap install clion --classic
 
+# Visual Studio Code.
 sudo snap install code --classic
+
+code --install-extension streetsidesoftware.code-spell-checker
+code --install-extension editorconfig.editorconfig
+code --install-extension equinusocio.vsc-material-theme
+code --install-extension pkief.material-icon-theme
+
 echo '''
 {
   "editor.fontSize": 16,
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
-  "editor.minimap.maxColumn": 100,
+  "editor.minimap.enabled": false,
   "editor.rulers": [80, 100],
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "workbench.colorTheme": "Material Theme",
+  "workbench.iconTheme": "material-icon-theme"
 }
 ''' > ~/.config/Code/User/settings.json
 
-code --install-extension streetsidesoftware.code-spell-checker
-code --install-extension editorconfig.editorconfig
+# Unity (Actual installation happens via UnityHub).
+mkdir -p ~/Software/Unity
+
+wget https://public-cdn.cloud.unity3d.com/hub/prod/UnityHub.AppImage \
+  -O ~/Software/Unity/UnityHub.AppImage
+
+chmod u+x ~/Software/Unity/UnityHub.AppImage
+
+sudo apt install libgconf-2-4
 
 # Home dir structure.
-mkdir ~/Projects
+mkdir -p ~/Projects
+mkdir -p ~/Software
 
-rm -r ~/Public
-rm -r ~/Videos
-rm -r ~/Music
-rm -r ~/Templates
+rm -rf ~/Public
+rm -rf ~/Videos
+rm -rf ~/Music
+rm -rf ~/Templates
 
-# Change lock shortcut to Window+L.
+# Change lock shortcut to Super+L.
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver \
   "['<Super>l', 'XF86ScreenSaver']"
 
