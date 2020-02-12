@@ -115,3 +115,32 @@ supersede dhcp6.name-servers 2606:4700:4700::1111, 2606:4700:4700::1001;
 
 # Fix clock when dual-booting.
 timedatectl set-local-rtc 1 --adjust-system-clock
+
+# Audio quality.
+rm ~/.config/pulse/*
+
+echo '''
+default-sample-format = float32le
+default-sample-rate = 48000
+alternate-sample-rate = 44100
+default-sample-channels = 2
+default-channel-map = front-left,front-right
+default-fragments = 2
+default-fragment-size-msec = 125
+resample-method = soxr-vhq
+enable-lfe-remixing = no
+high-priority = yes
+nice-level = -11
+realtime-scheduling = yes
+realtime-priority = 9
+rlimit-rtprio = 9
+daemonize = no
+avoid-resampling = true
+''' > ~/.config/pulse/daemon.conf
+
+echo '''
+pcm.!default {
+  type plug
+  slave.pcm hw
+}
+''' > ~/.asoundrc
